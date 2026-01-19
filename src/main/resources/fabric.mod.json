@@ -1,0 +1,31 @@
+{
+	"schemaVersion": 1,
+	"id": "enduring-tools",
+	"version": "${version}",
+	"name": "Enduring Tools",
+	"description": "Stops your tools from fully breaking. Inspired by Hytale.",
+	"authors": [
+		"Attikai"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/AtticusHelvig/enduring-tools"
+	},
+	"license": "MIT",
+	"icon": "assets/enduring-tools/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.attikai.EnduringTools"
+		]
+	},
+	"mixins": [
+		"enduring-tools.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.18.4",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
