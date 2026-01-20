@@ -20,7 +20,7 @@ public abstract class ItemStackMixin {
     @Shadow public abstract int getDamage();
 
     @Inject(method = "calculateDamage(ILnet/minecraft/server/world/ServerWorld;Lnet/minecraft/server/network/ServerPlayerEntity;)I", at = @At("HEAD"), cancellable = true)
-    private void calculateDamageOverride(int baseDamage, ServerWorld world, ServerPlayerEntity player, CallbackInfoReturnable<Integer> cir) {
+    private void modifyDamageCalculation(int baseDamage, ServerWorld world, ServerPlayerEntity player, CallbackInfoReturnable<Integer> cir) {
         // do nothing if not tagged
         if (!this.isIn(ModTags.SHOULD_ENDURE)) {
             return;
