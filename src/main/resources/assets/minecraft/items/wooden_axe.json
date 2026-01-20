@@ -7,7 +7,7 @@
     },
     "on_true": {
       "type": "minecraft:model",
-      "model": "minecraft:item/wooden_axe_broken"
+      "model": "enduring-tools:item/wooden_axe_broken"
     },
     "property": "minecraft:broken"
   }
