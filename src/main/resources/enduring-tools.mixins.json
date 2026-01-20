@@ -3,6 +3,7 @@
   "package": "net.attikai.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "ItemMixin",
     "ItemStackMixin",
     "PlayerEntityMixin"
   ],
