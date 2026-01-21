@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "enduring-tools:item/iron_axe_broken"
+  }
+}
