@@ -5,6 +5,7 @@
   "mixins": [
     "ItemMixin",
     "ItemStackMixin",
+    "LivingEntityMixin",
     "PlayerEntityMixin"
   ],
   "injectors": {
