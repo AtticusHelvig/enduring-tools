@@ -13,8 +13,6 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {
-    @Unique
-    private static final float BROKEN_DAMAGE_MODIFIER = 1.0f / 8.0f;
 
     @ModifyVariable(method = "hurtServer(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;F)Z", at = @At("HEAD"), name = "damage", argsOnly = true)
     float modifyDamage(float damage, @Local(argsOnly = true, name = "source") DamageSource source) {
@@ -29,8 +27,7 @@ public class LivingEntityMixin {
         }
         // and only if they're broken
         if (weapon.nextDamageWillBreak()) {
-            EnduringTools.LOGGER.info("Damage modified.");
-            return damage * BROKEN_DAMAGE_MODIFIER;
+            return damage * EnduringTools.config.DAMAGE_MULTIPLIER;
         }
         return damage;
     }

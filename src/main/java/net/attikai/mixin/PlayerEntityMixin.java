@@ -22,9 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Player.class)
 public abstract class PlayerEntityMixin extends Avatar {
     @Shadow @Final
-    Inventory inventory;
-    @Unique
-    private static final float BROKEN_MODIFIER = 1.0f / 8.0f;
+    private Inventory inventory;
 
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, Level world) {
         super(entityType, world);
@@ -46,7 +44,7 @@ public abstract class PlayerEntityMixin extends Avatar {
         }
         float unbroken = cir.getReturnValueF();
         // don't be worse than hand mining
-        float result = Math.max(unbroken / efficiency, unbroken * BROKEN_MODIFIER);
+        float result = Math.max(unbroken / efficiency, unbroken * EnduringTools.config.EFFICIENCY_MULTIPLIER);
         cir.setReturnValue(result);
     }
 }
