@@ -6,6 +6,8 @@
     "#minecraft:pickaxes",
     "#minecraft:shovels",
     "#minecraft:spears",
-    "#minecraft:swords"
+    "#minecraft:swords",
+    "minecraft:bow",
+    "minecraft:crossbow"
   ]
 }
