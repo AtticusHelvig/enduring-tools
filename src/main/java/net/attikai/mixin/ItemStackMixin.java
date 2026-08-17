@@ -1,9 +1,12 @@
 package net.attikai.mixin;
 
 import com.llamalad7.mixinextras.sugar.Cancellable;
+import net.attikai.EnduringTools;
 import net.attikai.tag.ModTags;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.ItemInstance;
 import net.minecraft.world.item.ItemStack;
@@ -25,6 +28,12 @@ public abstract class ItemStackMixin implements ItemInstance {
         // do nothing if not tagged
         if (!this.is(ModTags.SHOULD_ENDURE)) {
             return;
+        }
+        // play breaking sound if breaking
+        int currentDurability = getMaxDamage() - getDamageValue();
+        int finalDurability = currentDurability - baseDamage;
+        if (currentDurability > 1 && finalDurability <= 1) {
+            world.playSound(null, player, SoundEvents.ITEM_BREAK.value(), SoundSource.PLAYERS, 1.0f, 1.0f);
         }
         // if it won't break let it be
         if (!this.nextDamageWillBreak()) {
