@@ -4,6 +4,7 @@ import net.attikai.EnduringTools;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Properties;
 
@@ -18,7 +19,7 @@ public class ConfigIO {
         // find/open the file
         Path path = FabricLoader.getInstance().getConfigDir();
         if (path == null) {
-            EnduringTools.LOGGER.warn("Failed to access config directory");
+            EnduringTools.LOGGER.warn("Failed to access config directory (load)");
             return def;
         }
         File file = path.resolve(filename + EXTENSION).toFile();
@@ -54,5 +55,21 @@ public class ConfigIO {
         }
 
         return properties;
+    }
+
+    public static boolean store(String filename, String content) {
+        Path path = FabricLoader.getInstance().getConfigDir();
+        if (path == null) {
+            EnduringTools.LOGGER.warn("Failed to access config directory (store)");
+            return false;
+        }
+        path = path.resolve(filename + EXTENSION);
+        try {
+            Files.writeString(path, content);
+        } catch (IOException e) {
+            EnduringTools.LOGGER.error("Failed to store config file");
+            return false;
+        }
+        return true;
     }
 }

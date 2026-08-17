@@ -13,9 +13,27 @@ public class ModConfig {
 
     public void load() {
         Properties user = ConfigIO.load(EnduringTools.MOD_ID);
-        if (!(user == null)) {
+        if (user != null) {
             apply(user);
+            return;
         }
+        EnduringTools.LOGGER.info("No configuration file detected, creating");
+        create();
+    }
+
+    public void create() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("# Configuration for Enduring Tools\n");
+        sb.append("# Broken Tool Efficiency (Mining Speed) Multiplier\n");
+        sb.append(ConfigKey.EFFICIENCY_MULTIPLIER.propertyName());
+        sb.append(" = ");
+        sb.append(EFFICIENCY_MULTIPLIER);
+        sb.append("\n# Broken Tool Damage Multiplier\n");
+        sb.append(ConfigKey.DAMAGE_MULTIPLIER.propertyName());
+        sb.append(" = ");
+        sb.append(DAMAGE_MULTIPLIER);
+
+        ConfigIO.store(EnduringTools.MOD_ID, sb.toString());
     }
 
     private void apply(@NonNull Properties properties) {
